@@ -3,255 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jarpa y Asociados | Consultoría Estratégica de RRHH</title>
+    <title>Jarpa & Asociados | Executive Advisory</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-base: #E8E8E8;
+            --bg-secondary: #D1D1D1;
+            --text-main: #1A1A1A;
+            --accent: #555555;
+            --border-line: rgba(0, 0, 0, 0.12);
+        }
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            letter-spacing: 0.03em;
             scroll-behavior: smooth;
         }
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, h4, .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
         }
-        .bg-natural {
-            background-color: #FDFBF7;
+        .nav-link {
+            position: relative;
+            transition: opacity 0.3s ease;
+            font-weight: 600;
         }
-        .text-corporate {
-            color: #2D3E40;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--text-main);
+            transition: width 0.3s ease;
         }
-        .bg-accent {
-            background-color: #4A5D4E;
+        .nav-link:hover::after {
+            width: 100%;
         }
-        .border-accent {
-            border-color: #A3B18A;
+        .hero-image {
+            filter: grayscale(100%) brightness(0.8) contrast(1.2);
+            transition: all 1.5s ease;
         }
-        .hero-gradient {
-            background: linear-gradient(rgba(253, 251, 247, 0.94), rgba(253, 251, 247, 0.85)), 
-                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-        .service-card {
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(74, 93, 78, 0.08);
-        }
-        .exp-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #4A5D4E;
-            border-radius: 50%;
+        .btn-premium {
+            border: 1.5px solid var(--text-main);
+            padding: 1rem 2.5rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            transition: all 0.4s ease;
+            color: var(--text-main);
             display: inline-block;
-            margin-right: 12px;
+            cursor: pointer;
+        }
+        .btn-premium:hover {
+            background-color: var(--text-main);
+            color: white;
+        }
+        .service-border {
+            border-bottom: 1.5px solid var(--border-line);
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease-out;
+        }
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        input, textarea, select {
+            background-color: transparent !important;
+            border-bottom: 1.5px solid var(--border-line) !important;
+            color: var(--text-main) !important;
+            font-weight: 400;
+            border-radius: 0;
+            appearance: none;
+        }
+        ::placeholder {
+            color: #777 !important;
+            font-style: italic;
+        }
+        .stat-card {
+            border-left: 1px solid var(--border-line);
+            padding-left: 2rem;
+        }
+
+        /* Modal Styles para NDA */
+        #nda-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .modal-content {
+            background: #fff;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 3rem;
+            position: relative;
         }
     </style>
 </head>
-<body class="bg-natural text-corporate">
+<body class="antialiased">
 
     <!-- Navegación -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold tracking-tight">
-                JARPA <span class="text-gray-400 font-light">&</span> ASOCIADOS
+    <nav class="fixed w-full z-50 py-8 px-10 bg-white/30 backdrop-blur-lg border-b border-black/10">
+        <div class="max-w-[1800px] mx-auto flex justify-between items-center">
+            <div class="text-xl font-light tracking-[0.5em] uppercase">
+                Jarpa <span class="italic serif lowercase text-2xl tracking-normal opacity-80">&</span> Asociados
             </div>
-            <div class="hidden md:flex space-x-8 text-sm uppercase tracking-widest font-medium">
-                <a href="#inicio" class="hover:text-green-800 transition-colors">Inicio</a>
-                <a href="#nosotros" class="hover:text-green-800 transition-colors">Trayectoria</a>
-                <a href="#servicios" class="hover:text-green-800 transition-colors">Servicios</a>
-                <a href="#sectores" class="hover:text-green-800 transition-colors">Sectores</a>
-                <a href="#contacto" class="px-5 py-2 bg-accent text-white rounded-sm hover:bg-opacity-90 transition-all">Consultar</a>
+            <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.4em] font-semibold">
+                <a href="#nosotros" class="nav-link">Visión</a>
+                <a href="#quienes-somos" class="nav-link">Liderazgo</a>
+                <a href="#diferenciacion" class="nav-link">Diferenciación</a>
+                <a href="#servicios" class="nav-link">Práctica</a>
+                <a href="#contacto" class="nav-link text-black border-b border-black/40">Confidencial</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="inicio" class="min-h-screen flex items-center pt-20 hero-gradient">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <span class="inline-block py-1 px-3 bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest mb-4">Consultoría para minimizar tus riesgos en Personas</span>
-                <h1 class="text-5xl md:text-7xl mb-6 leading-tight">Gestión Humana con <span class="italic">Mirada Estratégica</span></h1>
-                <p class="text-lg text-gray-600 mb-8 max-w-lg leading-relaxed">
-                    Asesoría independiente para Directorios y CEOs. Especialistas en mitigación de riesgos organizacionales y liderazgo de alto impacto con alcance en toda <span class="font-semibold text-corporate">Latinoamérica</span>.
+    <section class="relative min-h-screen flex items-center justify-center px-10 pt-20">
+        <div class="max-w-6xl w-full grid lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-7">
+                <span class="block text-accent uppercase tracking-[0.5em] text-[11px] mb-8 font-bold">Gestión Humana con Mirada Estratégica</span>
+                <h1 class="text-6xl md:text-[85px] leading-[0.95] mb-12 serif text-[#111]">
+                    Minimizamos el riesgo <br> <span class="italic">en su capital humano</span>.
+                </h1>
+                <p class="text-[13px] font-medium max-w-xl leading-relaxed text-black/70 mb-14 tracking-widest uppercase">
+                    Asesoría para Directorios, CEOs, Ejecutivos de Primera Línea y Dueños de Empresa. Especialistas en mitigación de riesgos organizacionales y liderazgo de alto impacto con alcance en toda Latinoamérica.
                 </p>
-                <div class="flex space-x-4">
-                    <a href="#servicios" class="bg-accent text-white px-8 py-4 rounded-sm font-semibold hover:shadow-lg transition-all">Qué hacemos</a>
-                    <a href="#nosotros" class="border border-accent text-accent px-8 py-4 rounded-sm font-semibold hover:bg-accent/5 transition-all">Nuestra Experiencia</a>
+                <div class="flex items-center space-x-10">
+                    <a href="#contacto" class="btn-premium">Iniciar Consulta</a>
+                    <a href="#servicios" class="text-[10px] uppercase tracking-[0.3em] font-bold border-b-2 border-black/20 pb-1 hover:border-black transition-colors">Nuestra Práctica</a>
                 </div>
             </div>
-            <div class="hidden md:block">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&q=80" alt="Consultoría Ejecutiva" class="rounded-lg shadow-2xl grayscale-[20%]">
-                    <div class="absolute -bottom-6 -right-6 bg-white p-8 shadow-xl border-t-4 border-accent">
-                        <p class="text-sm italic text-gray-500 mb-2">Base Santiago</p>
-                        <p class="text-xl font-bold">Alcance Regional LATAM</p>
-                    </div>
+            <div class="lg:col-span-5 relative">
+                <div class="overflow-hidden border-4 border-white/50 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80" alt="Reunión de directorio C-Level" class="hero-image w-full h-[600px] object-cover hover:scale-105 transition-transform duration-[4s]">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Propuesta de Valor & Experiencia (Nosotros) -->
-    <section id="nosotros" class="py-24 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
+    <!-- Visión / Manifiesto -->
+    <section id="nosotros" class="py-40 px-10 bg-white/60">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-start">
                 <div>
-                    <h2 class="text-4xl mb-8">Trayectoria Ejecutiva e Independencia</h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Jarpa & Asociados nace de la necesidad de aportar una mirada crítica y profesional en la consultoría para minimizar riesgos en la gestión de personas. Nuestra propuesta se sustenta en una trayectoria sólida en el mundo corporativo multinacional.
-                    </p>
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-center text-gray-700">
-                            <span class="exp-dot"></span>
-                            <span>Liderazgo ejecutivo en compañías Fortune 500.</span>
-                        </div>
-                        <div class="flex items-center text-gray-700">
-                            <span class="exp-dot"></span>
-                            <span>Gestión de gobierno multi-país en LATAM y Estados Unidos.</span>
-                        </div>
-                        <div class="flex items-center text-gray-700">
-                            <span class="exp-dot"></span>
-                            <span>Especialización académica en Liderazgo y Estrategia.</span>
-                        </div>
-                        <div class="flex items-center text-gray-700">
-                            <span class="exp-dot"></span>
-                            <span>Experiencia probada en contextos de alta presión y crisis.</span>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic border-l-2 border-accent pl-4">
-                        "Entendemos la mesa directiva porque hemos estado ahí. No somos solo consultores, somos contrapartes estratégicas para toda la región."
+                    <h2 class="text-accent text-[10px] uppercase tracking-[0.6em] mb-12 font-black">Nuestra Visión</h2>
+                    <p class="serif text-4xl leading-tight italic text-black">
+                        “Apoyamos a CEOs y Directorios a tomar mejores decisiones estratégicas en personas y cultura cuando enfrentan crecimiento, complejidad regional o transformación."
                     </p>
                 </div>
-                <div class="bg-natural p-10 rounded-sm border border-gray-100">
-                    <h3 class="text-2xl font-bold mb-6 italic text-accent">Nuestra Diferenciación</h3>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="text-lg font-bold mb-2">Experiencia ejecutiva real</h4>
-                            <p class="text-sm text-gray-500 leading-relaxed">Experiencia directa liderando en organizaciones multinacionales con operación en LATAM y EE.UU. Aportamos una visión de negocio que trasciende el área de RRHH tradicional.</p>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-2">Mirada independiente</h4>
-                            <p class="text-sm text-gray-500 leading-relaxed">Actuamos como contraparte estratégica del CEO o del Directorio en decisiones sensibles relacionadas con personas, garantizando objetividad en temas de alto impacto organizacional.</p>
-                        </div>
-                        <div>
-                            <h4 class="text-lg font-bold mb-2">Enfoque en impacto</h4>
-                            <p class="text-sm text-gray-500 leading-relaxed">Nuestro trabajo no se mide por actividades realizadas, sino por la calidad de las decisiones de liderazgo que se toman y la solidez de la arquitectura organizacional resultante.</p>
-                        </div>
-                    </div>
+                <div class="text-[15px] font-normal leading-[2.4] space-y-8 text-black/80 tracking-wide">
+                    <p>
+                        Contamos con experiencia liderando RRHH en 15 países y trabajando directamente con equipos ejecutivos, lo que nos permite aportar una mirada práctica, independiente y orientada a resultados.
+                    </p>
+                    <p>
+                        Nuestra firma actúa como contraparte crítica para la alta dirección, diseñando arquitecturas de liderazgo que garantizan la resiliencia del negocio en contextos de alta volatilidad.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Qué hacemos (Servicios) -->
-    <section id="servicios" class="py-24 bg-natural">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 text-left border-l-4 border-accent pl-8">
-                <h2 class="text-4xl mb-2 italic">Qué hacemos</h2>
-                <p class="text-gray-500 uppercase tracking-widest text-xs font-bold">Nuestras áreas de intervención estratégica</p>
+    <!-- Liderazgo -->
+    <section id="quienes-somos" class="py-40 px-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-accent text-[10px] uppercase tracking-[0.6em] mb-8 font-black">Liderazgo de la Firma</h2>
+                <h3 class="serif text-5xl mb-10 text-black">Trayectoria con <span class="italic">alcance multinacional</span></h3>
             </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Servicio 1: Advisory -->
-                <div class="service-card bg-white p-10 border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-accent">Advisory Estratégico en Liderazgo</h3>
-                        <p class="text-gray-600 mb-6 font-medium italic">Acompañamos a CEO y Directorios en decisiones complejas.</p>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Sucesión ejecutiva</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Configuración del equipo de liderazgo</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Gobernanza del talento</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Transiciones de liderazgo</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Servicio 2: Coaching -->
-                <div class="service-card bg-white p-10 border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-accent">Coaching Ejecutivo para C-Level</h3>
-                        <p class="text-gray-600 mb-6 font-medium italic">Procesos confidenciales orientados a resultados.</p>
-                        <p class="text-gray-500 text-sm mb-6">Aceleramos la efectividad en contextos de:</p>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Nuevas responsabilidades de alto perfil</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Cambios organizacionales profundos</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Contextos de alta presión estratégica</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Servicio 3: Evaluación -->
-                <div class="service-card bg-white p-10 border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-accent">Evaluación Estratégica de Liderazgo</h3>
-                        <p class="text-gray-600 mb-6 font-medium italic">Más allá de herramientas psicométricas.</p>
-                        <p class="text-gray-500 text-sm mb-6">Analizamos trayectoria, contexto y capacidad real de impacto frente a:</p>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Escenarios de crecimiento o crisis</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Procesos de transformación profunda</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Servicio 4: Arquitectura -->
-                <div class="service-card bg-white p-10 border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-2xl font-bold mb-4 text-accent">Arquitectura de Liderazgo</h3>
-                        <p class="text-gray-600 mb-6 font-medium italic">Alineación estructural con la estrategia del negocio.</p>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Diseño de estructuras eficientes</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Definición de roles críticos</li>
-                            <li class="flex items-start text-sm text-gray-600"><span class="text-accent mr-3">/</span> Accountability en el equipo ejecutivo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sectores / Clientes -->
-    <section id="sectores" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-start">
-                <div>
-                    <h2 class="text-4xl mb-6 italic text-corporate">Sectores</h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        Trabajamos principalmente con organizaciones que operan en entornos complejos o altamente competitivos en Latinoamérica. Por la naturaleza sensible de nuestras intervenciones estratégicas en personas y advisory ejecutivo, mantenemos un estricto protocolo de confidencialidad sobre nuestra cartera de clientes.
-                    </p>
-                    <div class="bg-accent/5 p-6 border-l-4 border-accent">
-                        <p class="text-sm text-accent font-medium italic">
-                            "Nuestra discreción es la base de la confianza con nuestros clientes de nivel C y Directorios en toda la región."
+            <div class="grid lg:grid-cols-1 gap-20 items-center">
+                <div class="max-w-3xl mx-auto text-center">
+                    <div class="space-y-6 text-[15px] leading-relaxed text-black/70 font-medium">
+                        <p>
+                            Liderada por <span class="font-semibold text-black">Mauricio Jarpa</span>, profesional con una consolidada carrera en la dirección estratégica de Recursos Humanos. Su experiencia se ha forjado en la primera línea de compañías globales y regionales, gestionando estructuras complejas y liderando equipos en más de 15 países de Latinoamérica.
+                        </p>
+                        <p>
+                            Esta visión multicultural y práctica permite a Jarpa & Asociados entender no solo el "qué" de la estrategia de personas, sino el "cómo" ejecutarla con éxito en entornos diversos, desde Family Offices hasta corporaciones multinacionales.
                         </p>
                     </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-8 uppercase tracking-widest text-gray-400">Especialización Industrial</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="p-6 border border-gray-100 bg-natural flex flex-col justify-center items-center text-center">
-                            <div class="w-10 h-10 mb-4 text-accent opacity-60">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                            </div>
-                            <span class="text-sm font-semibold text-corporate">Logística y Freight Forwarding</span>
+                    <div class="grid grid-cols-2 gap-10 mt-16 max-w-xl mx-auto">
+                        <div class="stat-card">
+                            <span class="block text-4xl serif italic text-black mb-2">15+</span>
+                            <span class="text-[10px] uppercase tracking-widest font-bold opacity-50">Países con experiencia directa</span>
                         </div>
-                        <div class="p-6 border border-gray-100 bg-natural flex flex-col justify-center items-center text-center">
-                            <div class="w-10 h-10 mb-4 text-accent opacity-60">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                            </div>
-                            <span class="text-sm font-semibold text-corporate">Consumo Masivo</span>
-                        </div>
-                        <div class="p-6 border border-gray-100 bg-natural flex flex-col justify-center items-center text-center">
-                            <div class="w-10 h-10 mb-4 text-accent opacity-60">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            </div>
-                            <span class="text-sm font-semibold text-corporate">Servicios Financieros</span>
-                        </div>
-                        <div class="p-6 border border-gray-100 bg-natural flex flex-col justify-center items-center text-center">
-                            <div class="w-10 h-10 mb-4 text-accent opacity-60">
-                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                            </div>
-                            <span class="text-sm font-semibold text-corporate">Empresas Familiares en Profesionalización</span>
+                        <div class="stat-card">
+                            <span class="block text-4xl serif italic text-black mb-2">C-Suite</span>
+                            <span class="text-[10px] uppercase tracking-widest font-bold opacity-50">Interlocución de alto nivel</span>
                         </div>
                     </div>
                 </div>
@@ -259,61 +210,219 @@
         </div>
     </section>
 
-    <!-- Frase Destacada -->
-    <section class="py-24 bg-accent text-white relative">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-5xl font-light italic leading-snug">
-                "Nuestra misión es transformar el riesgo humano en una ventaja competitiva mediante una arquitectura de liderazgo resiliente."
-            </h2>
-            <div class="mt-10 flex justify-center items-center space-x-4">
-                <div class="h-px w-12 bg-white/30"></div>
-                <p class="uppercase tracking-[0.3em] text-xs">Jarpa & Asociados</p>
-                <div class="h-px w-12 bg-white/30"></div>
+    <!-- Diferenciación -->
+    <section id="diferenciacion" class="py-40 px-10 bg-[#1A1A1A] text-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-32">
+                <h2 class="text-white/40 text-[10px] uppercase tracking-[0.6em] mb-8 font-black">Por qué nosotros</h2>
+                <h3 class="serif text-6xl italic">Diferenciación Estratégica</h3>
+            </div>
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="space-y-8 p-8 border border-white/10 hover:border-white/30 transition-colors">
+                    <div class="w-10 h-[1px] bg-white/40"></div>
+                    <h4 class="serif text-3xl">Visión End-to-End</h4>
+                    <p class="text-[13px] leading-relaxed text-white/60 font-light tracking-wide">
+                        No nos limitamos a la teoría. Acompañamos a nuestros clientes desde el <span class="text-white font-medium">diagnóstico inicial hasta la ejecución</span>, estableciendo <span class="text-white font-medium">KPIs medibles</span> que garantizan el retorno del capital humano.
+                    </p>
+                </div>
+                <div class="space-y-8 p-8 border border-white/10 hover:border-white/30 transition-colors">
+                    <div class="w-10 h-[1px] bg-white/40"></div>
+                    <h4 class="serif text-3xl">ADN Latam Real</h4>
+                    <p class="text-[13px] leading-relaxed text-white/60 font-light tracking-wide">
+                        Entendemos la complejidad regulatoria y cultural de 15 mercados distintos, ofreciendo soluciones pragmáticas adaptadas a la realidad regional.
+                    </p>
+                </div>
+                <div class="space-y-8 p-8 border border-white/10 hover:border-white/30 transition-colors">
+                    <div class="w-10 h-[1px] bg-white/40"></div>
+                    <h4 class="serif text-3xl">Independencia Crítica</h4>
+                    <p class="text-[13px] leading-relaxed text-white/60 font-light tracking-wide">
+                        Aportamos una mirada externa sin conflictos de interés, diciendo lo que la alta dirección necesita escuchar para proteger la resiliencia organizacional.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto -->
-    <section id="contacto" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-            <div>
-                <h2 class="text-4xl mb-6 italic">Contacto Confidencial</h2>
-                <p class="text-gray-600 mb-8 leading-relaxed">Entendemos la naturaleza sensible de las decisiones de liderazgo y la gestión de personas. Garantizamos absoluta confidencialidad en nuestra primera aproximación para proyectos en Chile y toda la región.</p>
-                <div class="space-y-6 text-sm">
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 border border-accent/20 flex items-center justify-center rounded-full text-accent font-bold">L</div>
-                        <span class="text-gray-500">Santiago, Chile | Alcance Regional LATAM</span>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <div class="w-10 h-10 border border-accent/20 flex items-center justify-center rounded-full text-accent font-bold">M</div>
-                        <span class="text-gray-500">contacto@jarpaasociados.com</span>
+    <!-- Servicios -->
+    <section id="servicios" class="py-40 px-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-32 border-b-2 border-black/10 pb-12">
+                <h2 class="text-5xl md:text-8xl serif leading-none text-black">Práctica <span class="italic font-light">Estratégica</span></h2>
+                <p class="text-[11px] uppercase tracking-[0.4em] text-black/60 font-bold max-w-xs text-right mt-8 md:mt-0">Intervenciones diseñadas para momentos críticos.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-x-20 gap-y-12">
+                <div class="service-border pb-16">
+                    <h3 class="text-3xl serif text-black mb-6">Crecimiento Regional</h3>
+                    <p class="text-[12px] uppercase tracking-widest text-black/50 leading-relaxed font-semibold">Diseño de estructuras escalables / Gobierno de talento multi-país / Alineamiento cultural.</p>
+                </div>
+                <div class="service-border pb-16">
+                    <h3 class="text-3xl serif text-black mb-6">Transformaciones</h3>
+                    <p class="text-[12px] uppercase tracking-widest text-black/50 leading-relaxed font-semibold">Cambio cultural de alto desempeño / Revisión de equipos ejecutivos / Rediseño de modelos.</p>
+                </div>
+                <div class="service-border pb-16">
+                    <h3 class="text-3xl serif text-black mb-6">Profesionalización</h3>
+                    <p class="text-[12px] uppercase tracking-widest text-black/50 leading-relaxed font-semibold">Sistemas de sucesión / Gobierno de compensaciones / Accountabilities y métricas.</p>
+                </div>
+                <div class="service-border pb-16">
+                    <h3 class="text-3xl serif text-black mb-6">Momentos Críticos</h3>
+                    <p class="text-[12px] uppercase tracking-widest text-black/50 leading-relaxed font-semibold">Integraciones post-adquisición / Gestión de crisis laborales / Reestructuraciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencia: Sectores -->
+    <section id="experiencia" class="py-40 px-10 bg-white/40">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-accent text-[10px] uppercase tracking-[0.6em] mb-8 font-black">Experiencia: Sectores e Industrias</h2>
+                <h3 class="serif text-5xl mb-12 text-black">Presencia en Mercados Dinámicos</h3>
+            </div>
+            <div class="grid lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-5">
+                    <p class="text-[15px] leading-relaxed text-black/80 font-medium">
+                        Trabajamos principalmente con organizaciones que operan en entornos complejos o altamente competitivos en Latinoamérica. Por la naturaleza sensible de nuestras intervenciones estratégicas en personas y advisory ejecutivo, mantenemos un estricto protocolo de confidencialidad sobre nuestra cartera de clientes.
+                    </p>
+                </div>
+                <div class="lg:col-span-7">
+                    <div class="grid grid-cols-2 md:grid-cols-2 gap-y-10 gap-x-8">
+                        <div class="border-l border-black/10 pl-6">
+                            <span class="block text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2">Producción</span>
+                            <p class="text-[12px] font-semibold text-black">Manufactura</p>
+                        </div>
+                        <div class="border-l border-black/10 pl-6">
+                            <span class="block text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2">Tecnología</span>
+                            <p class="text-[12px] font-semibold text-black">Software, IT & Startups Scale-ups</p>
+                        </div>
+                        <div class="border-l border-black/10 pl-6">
+                            <span class="block text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2">Recursos</span>
+                            <p class="text-[12px] font-semibold text-black">Minería, Energía & Utilities</p>
+                        </div>
+                        <div class="border-l border-black/10 pl-6">
+                            <span class="block text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2">Logística</span>
+                            <p class="text-[12px] font-semibold text-black">Transporte & Supply Chain</p>
+                        </div>
+                        <div class="border-l border-black/10 pl-6">
+                            <span class="block text-[10px] uppercase tracking-widest font-bold opacity-40 mb-2">Servicios</span>
+                            <p class="text-[12px] font-semibold text-black">Consultoría & Servicios Corporativos</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form class="space-y-4">
-                <div class="grid md:grid-cols-2 gap-4">
-                    <input type="text" placeholder="Nombre" class="w-full p-4 bg-natural border border-gray-100 focus:outline-none focus:border-accent text-sm">
-                    <input type="email" placeholder="Email Corporativo" class="w-full p-4 bg-natural border border-gray-100 focus:outline-none focus:border-accent text-sm">
+        </div>
+    </section>
+
+    <!-- Contacto Confidencial -->
+    <section id="contacto" class="py-40 px-10 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-6xl serif italic mb-12 text-black">Contacto Confidencial</h2>
+            <div class="space-y-4 mb-16 max-w-2xl mx-auto">
+                <p class="text-[11px] font-bold text-black/80 tracking-[0.3em] uppercase">
+                    Entendemos la naturaleza sensible de las decisiones de liderazgo y la gestión de personas. 
+                </p>
+                <p class="text-[11px] font-medium text-black/50 tracking-[0.2em] uppercase leading-relaxed">
+                    Garantizamos absoluta confidencialidad para proyectos en Chile y toda la región.
+                </p>
+            </div>
+
+            <!-- Información Directa -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 md:gap-24 mb-24 border-y border-black/5 py-10">
+                <div class="text-center md:text-left">
+                    <span class="block text-[9px] uppercase tracking-[0.4em] text-accent mb-2 font-black">Ubicación</span>
+                    <p class="text-[11px] font-semibold text-black uppercase tracking-widest">Santiago, Chile | Alcance Regional LATAM</p>
                 </div>
-                <input type="text" placeholder="Organización" class="w-full p-4 bg-natural border border-gray-100 focus:outline-none focus:border-accent text-sm">
-                <textarea rows="4" placeholder="Describa el contexto de su consulta" class="w-full p-4 bg-natural border border-gray-100 focus:outline-none focus:border-accent text-sm"></textarea>
-                <button type="submit" class="w-full py-4 bg-accent text-white font-bold tracking-widest uppercase text-xs hover:bg-opacity-90 transition-all">Solicitar Conversación</button>
+                <div class="text-center md:text-left">
+                    <span class="block text-[9px] uppercase tracking-[0.4em] text-accent mb-2 font-black">Directo</span>
+                    <p class="text-[11px] font-semibold text-black lowercase tracking-widest">contacto@jarpayasociados.com</p>
+                </div>
+            </div>
+
+            <form id="contact-form" class="grid md:grid-cols-2 gap-x-16 gap-y-12 text-left">
+                <div class="py-4 border-b border-black/10">
+                    <label class="text-[10px] uppercase tracking-[0.4em] text-accent block mb-2 font-black">Nombre</label>
+                    <input type="text" id="form-name" placeholder="Su nombre" class="w-full focus:outline-none serif italic text-2xl">
+                </div>
+                <div class="py-4 border-b border-black/10">
+                    <label class="text-[10px] uppercase tracking-[0.4em] text-accent block mb-2 font-black">Email Corporativo</label>
+                    <input type="email" id="form-email" placeholder="email@compañia.com" class="w-full focus:outline-none serif italic text-2xl">
+                </div>
+                <div class="py-4 border-b border-black/10 md:col-span-2">
+                    <label class="text-[10px] uppercase tracking-[0.4em] text-accent block mb-2 font-black">Organización / Grupo</label>
+                    <input type="text" id="form-company" placeholder="Compañía" class="w-full focus:outline-none serif italic text-2xl">
+                </div>
+                <div class="md:col-span-2 pt-16 flex justify-center">
+                    <button type="button" onclick="sendInquiry()" class="btn-premium px-24">Solicitar Diálogo</button>
+                </div>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-natural border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 uppercase tracking-widest font-medium">
-            <div class="mb-4 md:mb-0">
-                JARPA <span class="font-light">&</span> ASOCIADOS &copy; 2025
+    <footer class="py-24 px-10 border-t-2 border-black/5 bg-white/20">
+        <div class="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="text-sm font-semibold tracking-[0.5em] uppercase text-black">
+                Jarpa <span class="serif lowercase tracking-normal text-xl italic opacity-60">&</span> Asociados
             </div>
-            <div class="flex space-x-8">
-                <a href="#" class="hover:text-accent transition-colors">LinkedIn</a>
-                <a href="#" class="hover:text-accent transition-colors">Ética & Privacidad</a>
+            <div class="flex space-x-12">
+                <a href="https://www.linkedin.com/in/mauricio-jarpa-director-rrhh/" target="_blank" class="text-[11px] uppercase tracking-widest font-bold text-black hover:opacity-50 transition-opacity">LinkedIn</a>
+                <button onclick="toggleNDA()" class="text-[11px] uppercase tracking-widest font-bold text-black hover:opacity-50 transition-opacity">Confidencialidad</button>
+            </div>
+            <div class="text-[11px] font-bold opacity-30 uppercase tracking-[0.4em] text-black">
+                &copy; 2025 Jarpa & Asociados. Santiago, Chile.
             </div>
         </div>
     </footer>
 
+    <!-- Modal NDA (Acuerdo de Confidencialidad Standard) -->
+    <div id="nda-modal" onclick="toggleNDA()">
+        <div class="modal-content text-left" onclick="event.stopPropagation()">
+            <button onclick="toggleNDA()" class="absolute top-6 right-6 text-2xl font-light">&times;</button>
+            <h2 class="serif text-4xl mb-8 border-b pb-4">Acuerdo de Confidencialidad (NDA)</h2>
+            <div class="text-[13px] leading-relaxed text-black/70 space-y-4 font-normal overflow-y-auto max-h-[60vh] pr-4">
+                <p><strong>1. Definición de Información Confidencial:</strong> Se considera información confidencial toda información estratégica, operativa, financiera o técnica compartida durante el diálogo de asesoría.</p>
+                <p><strong>2. Obligación de No Divulgación:</strong> Jarpa & Asociados se compromete a no divulgar, copiar ni utilizar la información recibida para fines distintos a la evaluación de servicios de consultoría estratégica.</p>
+                <p><strong>3. Excepciones:</strong> No se considerará confidencial aquella información que sea de dominio público o que haya sido recibida legítimamente de terceros.</p>
+                <p><strong>4. Vigencia:</strong> Las obligaciones de confidencialidad se mantendrán vigentes de forma indefinida, dada la naturaleza de advisory C-Level de nuestros servicios.</p>
+                <p><strong>5. Protección de Datos:</strong> Cualquier dato personal será tratado bajo estándares internacionales de privacidad y leyes locales aplicables en Chile.</p>
+                <div class="pt-8 italic">
+                    <p>Este documento constituye nuestro compromiso estándar de discreción previo a cualquier formalización contractual.</p>
+                </div>
+            </div>
+            <div class="mt-12 flex justify-end">
+                <button onclick="toggleNDA()" class="btn-premium">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animaciones de scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('fade-in-section');
+            observer.observe(section);
+        });
+
+        // Función para abrir el modal del NDA
+        function toggleNDA() {
+            const modal = document.getElementById('nda-modal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Función para solicitar diálogo vía email
+        function sendInquiry() {
+            const name = document.getElementById('form-name').value;
+            const company = document.getElementById('form-company').value;
+            const email = "contacto@jarpayasociados.com";
+            const subject = encodeURIComponent("Solicitud de Diálogo Estratégico - Jarpa & Asociados");
+            const body = encodeURIComponent(`Hola Mauricio,\n\nMe gustaría solicitar un diálogo confidencial respecto a asesoría ejecutiva.\n\nNombre: ${name}\nOrganización: ${company}\n\nQuedo atento/a a su respuesta.`);
+            
+            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+        }
+    </script>
 </body>
 </html>
